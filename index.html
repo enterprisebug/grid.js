@@ -7,11 +7,14 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+	<link rel="stylesheet" type="text/css" href="assets/fd-slider/fd-slider.css?v=2">
+	<link rel="stylesheet" type="text/css" href="assets/fd-slider/fd-slider-tooltip.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/fd-slider/fd-slider.js"></script>
 	<script type="text/javascript" src="dist/grid.js"></script>
   </head>
   <body>
@@ -28,6 +31,12 @@
           <li><a href="https://github.com/enterprisebug/grid.js/dist/grid.min.js">Download <strong>grid.min.js</strong></a></li>
           <li><a href="https://github.com/enterprisebug/grid.js">View On <strong>GitHub</strong></a></li>
         </ul>
+		
+		<form id="opts">
+			<label>Distance:</label><input type="text" name="distance" min="5" max="50" step="1" value="10"><br>
+			<label>LineWidth:</label><input type="text" name="lineWidth" min="0" max="5" step="0.1" value="1"><br>
+			<label>Shadow:</label><input type="checkbox" name="shadow"><br>
+		</form>
       </header>
       <section>
 
@@ -57,8 +66,8 @@
       var context = canvas.getContext("2d");
 
       var opts = {
-        distance : 20,
-        lineWidth : 1.5,
+        distance : <span id="opt-distance">20</span>,
+        lineWidth : <span id="opt-lineWidth">1.5</span>,
         color : "green",
         caption : true
       };
@@ -71,16 +80,73 @@
 <canvas id="myCanvas" width="400" height="200"></canvas>
 
 <script>
-var canvas = document.getElementById("myCanvas");
-var context = canvas.getContext("2d");
+// update() {
+    
+    //$('#opts input:checkbox').each(function() {
+    //  opts[this.name] = this.checked;
+    //  $('#opt-' + this.name).text(this.checked);
+    //});
+    
+  //}
+  $(function() {
+    var params = {};
+    var hash = /^#\?(.*)/.exec(location.hash);
+    if (hash) {
+      $.each(hash[1].split(/&/), function(i, pair) {
+        var kv = pair.split(/=/);
+        params[kv[0]] = kv[kv.length-1];
+      });
+    }
+    $('#opts input[min]').each(function() {
+      var val = params[this.name];
+      if (val !== undefined) this.value = val;
+      this.onchange = update;
+    });
+    //$('#opts input:checkbox').each(function() {
+    //  this.checked = !!params[this.name];
+    //  this.onclick = update;
+    //});
+    
+    animate();
+  });
 
-var opts = {
-    distance : 20,
-    lineWidth : 1.5,
-    color : "green",
-    caption : true
-};
-new Grid(opts).draw(context);
+
+	window.requestAnimFrame = (function(callback) {
+		return window.requestAnimationFrame || 
+		window.webkitRequestAnimationFrame || 
+		window.mozRequestAnimationFrame || 
+		window.oRequestAnimationFrame || 
+		window.msRequestAnimationFrame ||
+		function(callback) {
+			window.setTimeout(callback, 1000 / 60);
+		};
+	})();
+
+	function animate() {
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+
+		// update stage
+
+		// clear stage
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		
+		var opts = {};
+    $('#opts input[min]').each(function() {
+      $('#opt-' + this.name).text(opts[this.name] = parseFloat(this.value));
+    });
+		new Grid(opts).draw(context);
+
+		// request new frame
+		requestAnimFrame(function() {
+			animate();
+		});
+	}
+
+	window.onload = function() {
+		animate();
+	};
+
 </script>
 
 <h2>Support or Contact</h2>
