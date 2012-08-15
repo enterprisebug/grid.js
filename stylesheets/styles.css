@@ -257,3 +257,21 @@ footer {
 #twitter_image {
 	padding-right: 10px;
 }
+
+label {
+	display: inline-block;
+	width: 440px;
+	font-size: 14px;
+	vertical-align: top;
+}
+
+#opts label {
+	line-height: 25px;
+	width: 80px;
+}
+
+span.fd-slider {
+	vertical-align: top;
+	display: inline-block;
+	width: 190px;
+}

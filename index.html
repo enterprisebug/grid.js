@@ -22,9 +22,7 @@
       <header>
         <h1>Grid.js</h1>
         <p>Will draw a nice grid on a HTML5 canvas element</p>
-
         <p class="view"><a href="https://github.com/enterprisebug/grid.js">View the Project on GitHub <small>enterprisebug/grid.js</small></a></p>
-
 
         <ul>
           <li><a href="https://github.com/enterprisebug/grid.js/dist/grid.js">Download <strong>grid.js</strong></a></li>
@@ -100,11 +98,11 @@
     $('#opts input[min]').each(function() {
       var val = params[this.name];
       if (val !== undefined) this.value = val;
-      this.onchange = update;
+      this.onchange = animate;
     });
     //$('#opts input:checkbox').each(function() {
     //  this.checked = !!params[this.name];
-    //  this.onclick = update;
+    //  this.onclick = animate;
     //});
     
     animate();
