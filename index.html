@@ -1,176 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Grid.js by enterprisebug</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Grid.js : Will draw a nice grid on a HTML5 canvas element" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-	<link rel="stylesheet" type="text/css" href="assets/fd-slider/fd-slider.css?v=2">
-	<link rel="stylesheet" type="text/css" href="assets/fd-slider/fd-slider-tooltip.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="assets/fd-slider/fd-slider.js"></script>
-	<script type="text/javascript" src="assets/jscolor/jscolor.js"></script>
-	<script type="text/javascript" src="dist/grid.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Grid.js</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Grid.js</h1>
-        <p>Will draw a nice grid on a HTML5 canvas element</p>
-        <p class="view"><a href="https://github.com/enterprisebug/grid.js">View the Project on GitHub <small>enterprisebug/grid.js</small></a></p>
 
-        <ul>
-          <li><a href="https://github.com/enterprisebug/grid.js/blob/gh-pages/dist/grid.js">Download <strong>grid.js</strong></a></li>
-          <li><a href="https://github.com/enterprisebug/grid.js/blob/gh-pages/dist/grid.min.js">Download <strong>grid.min.js</strong></a></li>
-          <li><a href="https://github.com/enterprisebug/grid.js">View On <strong>GitHub</strong></a></li>
-        </ul>
-		
-		<form id="opts">
-			<label>Distance:</label><input type="text" name="distance" min="5" max="50" step="1" value="10" /><br />
-			<label>LineWidth:</label><input type="text" name="lineWidth" min="0" max="5" step="0.1" value="1" /><br />
-			<label>Shadow:</label><input type="checkbox" name="shadow" /><br/>
-			<label>GridColor:</label><input class="color" value="#66ff00" color="#66ff00" name="gridColor" />
-		</form>
-      </header>
-      <section>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/enterprisebug/grid.js">View on GitHub</a>
 
-<h2>Features</h2>
+          <h1 id="project_title">Grid.js</h1>
+          <h2 id="project_tagline">Will draw a nice grid on a HTML5 canvas element</h2>
 
-<p>
-	<ul>
-		<li>MIT Licence</li>
-		<li>More to come :)</li>
-	</ul>
-</p>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/enterprisebug/grid.js/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/enterprisebug/grid.js/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>grid.js</h1>
 
-<h2>Demo</h2>
+<p>Draws a grid in your html5 canvas</p>
 
-<pre><code>&lt;!doctype html>
-&lt;html>
-  &lt;head>
-    &lt;title>Grid.js by enterprisebug&lt;/title>
-    &lt;script src="dist/grid.min.js">&lt;/script>
-  &lt;/head>
-  &lt;body>
-    &lt;canvas id="myCanvas" width="400" height="200">&lt;/canvas>
+<ul>
+<li>FeatureList (not yet)</li>
+</ul><h2>Usage</h2>
 
-    &lt;script>
-      var canvas = document.getElementById("myCanvas");
-      var context = canvas.getContext("2d");
+<p>Assume that we have a HTML5 canvas element:</p>
 
-      var opts = {
-        distance : <span id="opt-distance">20</span>,
-        lineWidth : <span id="opt-lineWidth">1.5</span>,
-        gridColor : "<span id="opt-gridColor">#ff0000</span>",
-        caption : true
-      };
-      new Grid(opts).draw(context);
-    &lt;/script>
-  &lt;/body>
-&lt;html>
-</code></pre>
+<div class="highlight"><pre><span class="nt">&lt;canvas</span> <span class="na">id=</span><span class="s">"myCanvas"</span> <span class="na">width=</span><span class="s">"600"</span> <span class="na">height=</span><span class="s">"200"</span><span class="nt">&gt;&lt;/canvas&gt;</span>
+</pre></div>
 
-<canvas id="myCanvas" width="400" height="200"></canvas>
+<p>Use grid like this:</p>
 
-<script>
-// update() {
-    
-    //$('#opts input:checkbox').each(function() {
-    //  opts[this.name] = this.checked;
-    //  $('#opt-' + this.name).text(this.checked);
-    //});
-    
-  //}
-  $(function() {
-    var params = {};
-    var hash = /^#\?(.*)/.exec(location.hash);
-    if (hash) {
-      $.each(hash[1].split(/&/), function(i, pair) {
-        var kv = pair.split(/=/);
-        params[kv[0]] = kv[kv.length-1];
-      });
-    }
-    $('#opts input[min]').each(function() {
-      var val = params[this.name];
-      if (val !== undefined) this.value = val;
-      this.onchange = animate;
-    });
-    //$('#opts input:checkbox').each(function() {
-    //  this.checked = !!params[this.name];
-    //  this.onclick = animate;
-    //});
-    
-    animate();
-  });
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"myCanvas"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">"2d"</span><span class="p">);</span>
 
-
-	window.requestAnimFrame = (function(callback) {
-		return window.requestAnimationFrame || 
-		window.webkitRequestAnimationFrame || 
-		window.mozRequestAnimationFrame || 
-		window.oRequestAnimationFrame || 
-		window.msRequestAnimationFrame ||
-		function(callback) {
-			window.setTimeout(callback, 1000 / 60);
-		};
-	})();
-
-	function animate() {
-		var canvas = document.getElementById("myCanvas");
-		var context = canvas.getContext("2d");
-
-		// update stage
-
-		// clear stage
-		context.clearRect(0, 0, canvas.width, canvas.height);
-		
-		var opts = {};
-    $('#opts input[min]').each(function() {
-      $('#opt-' + this.name).text(opts[this.name] = parseFloat(this.value));
-    });
-	$('#opts input[color]').each(function() {
-      $('#opt-' + this.name).text(opts[this.name] = this.value);
-    });
-		new Grid(opts).draw(context);
-
-		// request new frame
-		requestAnimFrame(function() {
-			animate();
-		});
-	}
-
-	window.onload = function() {
-		animate();
-	};
-
-</script>
-
-<h2>Support or Contact</h2>
-
-<p>
-	<img src="https://api.twitter.com/1/users/profile_image?screen_name=danielsirz&size=bigger" alt="Daniel Sirz" valign="top" align="left" id="twitter_image"/>
-	If you encounter any problems, please use the <a href="https://github.com/enterprisebug/grid.js/issues">GitHub issue tracker</a>.
-	For updates <a href="http://twitter.com/danielsirz">follow me on Twitter</a>.
-	If you like spin.js and use it in the wild, let me know.</p>
-
-<h2>Changes</h2>
-<h3>Version 1.0 (2012-08-14)</h3>
-<p>Initial Realease</p>
-
+<span class="kd">var</span> <span class="nx">opts</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">distance</span> <span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="nx">lineWidth</span> <span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
+    <span class="nx">color</span> <span class="o">:</span> <span class="s2">"green"</span><span class="p">,</span>
+    <span class="nx">caption</span> <span class="o">:</span> <span class="kc">true</span>
+<span class="p">};</span>
+<span class="k">new</span> <span class="nx">Grid</span><span class="p">(</span><span class="nx">opts</span><span class="p">).</span><span class="nx">draw</span><span class="p">(</span><span class="nx">context</span><span class="p">);</span>
+</pre></div>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/enterprisebug">enterprisebug</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Grid.js maintained by <a href="https://github.com/enterprisebug">enterprisebug</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-34207705-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
   </body>
 </html>
