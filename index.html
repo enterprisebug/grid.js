@@ -15,6 +15,7 @@
     <![endif]-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript" src="assets/fd-slider/fd-slider.js"></script>
+	<script type="text/javascript" src="assets/jscolor/jscolor.js"></script>
 	<script type="text/javascript" src="dist/grid.js"></script>
   </head>
   <body>
@@ -25,15 +26,16 @@
         <p class="view"><a href="https://github.com/enterprisebug/grid.js">View the Project on GitHub <small>enterprisebug/grid.js</small></a></p>
 
         <ul>
-          <li><a href="https://github.com/enterprisebug/grid.js/dist/grid.js">Download <strong>grid.js</strong></a></li>
-          <li><a href="https://github.com/enterprisebug/grid.js/dist/grid.min.js">Download <strong>grid.min.js</strong></a></li>
+          <li><a href="https://github.com/enterprisebug/grid.js/blob/gh-pages/dist/grid.js">Download <strong>grid.js</strong></a></li>
+          <li><a href="https://github.com/enterprisebug/grid.js/blob/gh-pages/dist/grid.min.js">Download <strong>grid.min.js</strong></a></li>
           <li><a href="https://github.com/enterprisebug/grid.js">View On <strong>GitHub</strong></a></li>
         </ul>
 		
 		<form id="opts">
-			<label>Distance:</label><input type="text" name="distance" min="5" max="50" step="1" value="10"><br>
-			<label>LineWidth:</label><input type="text" name="lineWidth" min="0" max="5" step="0.1" value="1"><br>
-			<label>Shadow:</label><input type="checkbox" name="shadow"><br>
+			<label>Distance:</label><input type="text" name="distance" min="5" max="50" step="1" value="10" /><br />
+			<label>LineWidth:</label><input type="text" name="lineWidth" min="0" max="5" step="0.1" value="1" /><br />
+			<label>Shadow:</label><input type="checkbox" name="shadow" /><br/>
+			<label>GridColor:</label><input class="color" value="#66ff00" color="#66ff00" name="gridColor" />
 		</form>
       </header>
       <section>
@@ -66,7 +68,7 @@
       var opts = {
         distance : <span id="opt-distance">20</span>,
         lineWidth : <span id="opt-lineWidth">1.5</span>,
-        color : "green",
+        gridColor : "<span id="opt-gridColor">#ff0000</span>",
         caption : true
       };
       new Grid(opts).draw(context);
@@ -132,6 +134,9 @@
 		var opts = {};
     $('#opts input[min]').each(function() {
       $('#opt-' + this.name).text(opts[this.name] = parseFloat(this.value));
+    });
+	$('#opts input[color]').each(function() {
+      $('#opt-' + this.name).text(opts[this.name] = this.value);
     });
 		new Grid(opts).draw(context);
 
