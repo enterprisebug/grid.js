@@ -254,7 +254,7 @@ td {
 
 form {
   background: #f2f2f2;
-  padding: 20px;
+  padding: 0 0 0 20px;
 }
 
 img {
@@ -428,4 +428,36 @@ Small Device Styles
     font-size: 11px;
   }
 
+}
+
+#demo_left {
+	float: left;
+	width: 350px;
+}
+
+#demo_right {
+	float: right;
+	width: 290px;
+}
+
+#opts label {
+    line-height: 25px;
+    width: 100px;
+}
+
+label {
+    display: inline-block;
+    vertical-align: top;
+}
+
+span.fd-slider {
+    display: inline-block;
+    vertical-align: top;
+    width: 170px;
+}
+
+#twitter_image {
+	height: 73px;
+	width: 73px;
+	margin: 0 10px 0 0px ;
 }
