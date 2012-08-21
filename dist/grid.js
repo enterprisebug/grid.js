@@ -41,8 +41,13 @@
 				
 				for (var y = 0; y <= target.canvas.width; y += o.distance) {
 					target.beginPath();
-					target.moveTo(0, y);
-					target.lineTo(target.canvas.width, y);
+					if (o.lineWidth == 1.0) { 
+						target.moveTo(0, y + 0.5); 
+						target.lineTo(target.canvas.width, y + 0.5);
+					} else { 
+						target.moveTo(0, y); 
+						target.lineTo(target.canvas.width, y);
+					}
 					target.closePath();
 					target.stroke();
 					if (o.caption)
@@ -53,8 +58,13 @@
 				
 				for (var x = 0; x <= target.canvas.width; x += o.distance) {
 					target.beginPath();
-					target.moveTo(x, 0);
-					target.lineTo(x, target.canvas.height);
+					if (o.lineWidth == 1.0) { 
+						target.moveTo(x + 0.5, 0);
+						target.lineTo(x + 0.5, target.canvas.height);
+					} else {
+						target.moveTo(x, 0);
+						target.lineTo(x, target.canvas.height);
+					}
 					target.closePath();
 					target.stroke();
 					if (o.caption)
