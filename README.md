@@ -11,7 +11,7 @@ Get a reference to the JavaScript file in the page head:
 
 Assume that we have a HTML5 canvas element:
 ```html
-<canvas id="myCanvas" width="600" height="200"></canvas>
+<canvas id="myCanvas" width="350" height="200"></canvas>
 ```
 
 Use grid in JavaScript code like this when you want to pass your own options:
