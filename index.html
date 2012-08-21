@@ -81,88 +81,77 @@
 
 <script>
 
-  $(function() {
-    var params = {};
-    var hash = /^#\?(.*)/.exec(location.hash);
-    if (hash) {
-      $.each(hash[1].split(/&/), function(i, pair) {
-        var kv = pair.split(/=/);
-        params[kv[0]] = kv[kv.length-1];
-      });
-    }
-    $('#opts input[min]').each(function() {
-      var val = params[this.name];
-      if (val !== undefined) this.value = val;
-      this.onchange = animate;
-    });
-    $('#opts input:checkbox').each(function() {
-      this.checked = !!params[this.name];
-      this.onclick = animate;
-    });
-    
-    animate();
-  });
-
-
-	window.requestAnimFrame = (function(callback) {
-		return window.requestAnimationFrame || 
-		window.webkitRequestAnimationFrame || 
-		window.mozRequestAnimationFrame || 
-		window.oRequestAnimationFrame || 
-		window.msRequestAnimationFrame ||
-		function(callback) {
-			window.setTimeout(callback, 1000 / 60);
-		};
-	})();
-
-	function animate() {
-		var canvas = document.getElementById("myCanvas");
-		var context = canvas.getContext("2d");
-
-		// update stage
-
-		// clear stage
-		context.clearRect(0, 0, canvas.width, canvas.height);
-		
-		var opts = {};
-    $('#opts input[min]').each(function() {
-      $('#opt-' + this.name).text(opts[this.name] = parseFloat(this.value));
-    });
-	$('#opts input[color]').each(function() {
-      $('#opt-' + this.name).text(opts[this.name] = this.value);
-    });
-	$('#opts input:checkbox').each(function() {
-      opts[this.name] = this.checked;
-      $('#opt-' + this.name).text(this.checked);
-    });
-		new Grid(opts).draw(context);
-
-		// request new frame
-		requestAnimFrame(function() {
-			animate();
+$(function() {
+	var params = {};
+	var hash = /^#\?(.*)/.exec(location.hash);
+	if (hash) {
+		$.each(hash[1].split(/&/), function(i, pair) {
+			var kv = pair.split(/=/);
+			params[kv[0]] = kv[kv.length-1];
 		});
 	}
+	$('#opts input[min]').each(function() {
+		var val = params[this.name];
+		if (val !== undefined) this.value = val;
+		this.onchange = animate;
+	});
+	$('#opts input[color]').each(function() {
+		var val = params[this.name];
+		if (val !== undefined) this.value = val;
+		this.onchange = animate;
+	});
+	$('#opts input:checkbox').each(function() {
+		this.checked = !!params[this.name];
+		this.onclick = animate;
+	});
 
-	window.onload = function() {
-		animate();
-	};
+	animate();
+});
+
+
+function animate() {
+	var canvas = document.getElementById("myCanvas");
+	var context = canvas.getContext("2d");
+
+	// clear stage
+	context.clearRect(0, 0, canvas.width, canvas.height);
+
+	var opts = {};
+	$('#opts input[min]').each(function() {
+		$('#opt-' + this.name).text(opts[this.name] = parseFloat(this.value));
+	});
+	$('#opts input[color]').each(function() {
+		$('#opt-' + this.name).text(opts[this.name] = this.value);
+	});
+	$('#opts input:checkbox').each(function() {
+		opts[this.name] = this.checked;
+		$('#opt-' + this.name).text(this.checked);
+	});
+	new Grid(opts).draw(context);
+}
 
 </script>
-<h2>Support or Contact</h2>
+			<h2>Support or Contact</h2>
 
-<p>
-	<img src="https://api.twitter.com/1/users/profile_image?screen_name=danielsirz&size=bigger" height="73" width="73" alt="Daniel Sirz" valign="top" align="left" id="twitter_image"/>
-	If you encounter any problems, please use the <a href="https://github.com/enterprisebug/grid.js/issues">GitHub issue tracker</a>.<br />
-	For updates <a href="http://twitter.com/danielsirz">follow me on Twitter</a>.<br />
-	If you like <a href="https://github.com/enterprisebug/grid.js">grid.js</a>, let me know.<br /><br /></p>
+			<p>
+				<img src="https://api.twitter.com/1/users/profile_image?screen_name=danielsirz&size=bigger" height="73" width="73" alt="Daniel Sirz" valign="top" align="left" id="twitter_image"/>
+				If you encounter any problems, please use the <a href="https://github.com/enterprisebug/grid.js/issues">GitHub issue tracker</a>.<br />
+				For updates <a href="http://twitter.com/danielsirz">follow me on Twitter</a>.<br />
+				If you like <a href="https://github.com/enterprisebug/grid.js">grid.js</a>, let me know.<br /><br />
+			</p>
 
-<h2>Changes</h2>
-<h3>Version 1.1 (2012-08-20)</h3>
-<p>Added Caption</p>
-<p>Added gridColor </p>
+			<h2>Changes</h2>
+			
+			<h3>Version 1.1 (2012-08-20)</h3>
+			<ul>
+				<li>Added Caption</li>
+				<li>Added gridColor</li>
+			</ul>
 
-<h3>Version 1.0 (2012-08-14)</h3>
-<p>Initial Realease</p>
+			<h3>Version 1.0 (2012-08-14)</h3>
+			<ul>
+				<li>Initial Realease</li>
+			</ul>
 
 		</section>
 	</div>
