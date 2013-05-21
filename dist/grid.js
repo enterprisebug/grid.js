@@ -39,7 +39,13 @@
 				target.strokeStyle = o.gridColor;
 				target.font = o.font;
 				
-				for (var y = 0; y <= target.canvas.width; y += o.distance) {
+				if (target.canvas.width > target.canvas.height) {
+					until = target.canvas.width;
+				} else {
+					until = target.canvas.height;
+				}
+
+				for (var y = 0; y <= until; y += o.distance) {
 					target.beginPath();
 					if (o.lineWidth == 1.0) { 
 						target.moveTo(0, y + 0.5); 
@@ -56,7 +62,7 @@
 					}
 				}
 				
-				for (var x = 0; x <= target.canvas.width; x += o.distance) {
+				for (var x = 0; x <= until; x += o.distance) {
 					target.beginPath();
 					if (o.lineWidth == 1.0) { 
 						target.moveTo(x + 0.5, 0);
