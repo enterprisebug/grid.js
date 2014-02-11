@@ -34,3 +34,6 @@ var context = canvas.getContext("2d");
 
 new Grid().draw(context);
 ```
+
+## Demo
+Have a look at the <a href="http://enterprisebug.github.io/grid.js/">Demo page here</a>
