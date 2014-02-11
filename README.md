@@ -1,6 +1,6 @@
 # grid.js
 
-Draws a grid in your html5 canvas
+Draws a grid in your html5 canvas - See <a href="http://enterprisebug.github.io/grid.js/">demo</a>
 
 ## Usage
 
