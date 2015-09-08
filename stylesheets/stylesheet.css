@@ -432,7 +432,7 @@ Small Device Styles
 
 #demo_left {
 	float: left;
-	width: 350px;
+	width: 340px;
 }
 
 #demo_right {
@@ -442,7 +442,7 @@ Small Device Styles
 
 #opts label {
     line-height: 25px;
-    width: 100px;
+    width: 110px;
 }
 
 label {
@@ -453,7 +453,7 @@ label {
 span.fd-slider {
     display: inline-block;
     vertical-align: top;
-    width: 170px;
+    width: 150px;
 }
 
 #twitter_image {
